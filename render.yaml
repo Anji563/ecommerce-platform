@@ -17,8 +17,8 @@ services:
           name: ecommerce-redis
           property: connectionString
 
-  # 2. Celery Background Worker
-  - type: worker
+  # 2. Celery Worker (Configured as Web Service to access Free Plan)
+  - type: web
     name: ecommerce-celery-worker
     env: docker
     dockerfilePath: ./backend/Dockerfile
