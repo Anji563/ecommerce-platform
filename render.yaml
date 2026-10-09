@@ -47,6 +47,6 @@ databases:
   # 4. PostgreSQL Database
   - name: ecommerce-db
     databaseName: ecommerce
-    user: postgres
+    user: ecommerce_user
     region: singapore
     plan: free
