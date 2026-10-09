@@ -24,7 +24,7 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
-    dockerCommand: sh -c "python -m http.server 10000 & celery -A app.tasks.celery_app worker --loglevel=info"
+    dockerCommand: python -c "import subprocess, os; subprocess.Popen(['python', '-m', 'http.server', '10000']); os.system('celery -A app.tasks.celery_app worker --loglevel=info')"
     region: singapore
     plan: free
     envVars:
