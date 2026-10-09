@@ -4,6 +4,7 @@ services:
     name: ecommerce-api
     env: docker
     dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
     region: singapore
     plan: free
     envVars:
@@ -17,11 +18,12 @@ services:
           name: ecommerce-redis
           property: connectionString
 
-  # 2. Celery Worker (Configured as Web Service to access Free Plan)
+  # 2. Celery Worker (Configured as Web Service for Free Plan)
   - type: web
     name: ecommerce-celery-worker
     env: docker
     dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
     dockerCommand: celery -A app.tasks.celery_app worker --loglevel=info
     region: singapore
     plan: free
