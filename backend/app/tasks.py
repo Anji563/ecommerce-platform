@@ -58,3 +58,11 @@ def send_transactional_email(self, pdf_path: str, recipient_email: str, order_id
         return f"Email delivered to {recipient_email}"
     except Exception as exc:
         raise self.retry(exc=exc, countdown=10)
+
+# Add this task so main.py imports successfully
+@celery_app.task
+def process_new_order(order_id: int, user_email: str):
+    print(f"Processing order #{order_id} for user {user_email}...")
+    # You can also chain them using celery workflows if you want:
+    # pdf_path = generate_pdf_invoice.delay(order_id)
+    return {"order_id": order_id, "status": "completed"}
